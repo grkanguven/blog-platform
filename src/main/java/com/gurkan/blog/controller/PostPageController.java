@@ -1,9 +1,12 @@
 package com.gurkan.blog.controller;
 
+import com.gurkan.blog.dto.PostDTO;
 import com.gurkan.blog.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class PostPageController {
@@ -16,9 +19,9 @@ public class PostPageController {
 
     @GetMapping("/posts")
     public String postsPage(Model model) {
-        var posts = postService.findAll();
-        System.out.println("Post sayısı: " + posts.size());  // Konsola kaç post geldi bak
+        List<PostDTO> posts = postService.findAllDto();
+        System.out.println("Post sayısı: " + posts.size());
         model.addAttribute("posts", posts);
-        return "posts"; // templates/posts.html dosyasını döner
+        return "posts"; // templates/posts.html
     }
 }

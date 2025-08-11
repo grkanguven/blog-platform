@@ -40,7 +40,9 @@ public class SecurityConfig {
                     "/api/auth/**",     // login, logout vs. api endpointleri
                     "/css/**",
                     "/api/auth/register",
-                    "/posts",
+                    "/posts/**",
+                    "/api/posts/**",
+                    "/api/posts/**/comments",
                     "/js/**",
                     "/images/**"
                 ).permitAll()

@@ -1,10 +1,14 @@
 package com.gurkan.blog.service;
 
+import com.gurkan.blog.dto.PostDTO;
 import com.gurkan.blog.entity.Post;
+import com.gurkan.blog.mapper.PostMapper;
 import com.gurkan.blog.repository.PostRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -15,15 +19,20 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> findAll() {
-        return postRepository.findAll();
+    public List<PostDTO> findAllDto() {
+        return postRepository.findAll()
+                .stream()
+                .map(PostMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Post> findById(Long id) {
-        return postRepository.findById(id);
+    public Optional<PostDTO> findByIdDto(Long id) {
+        return postRepository.findById(id)
+                .map(PostMapper::toDTO);
     }
 
-    public Post save(Post post) {
+    public Post saveDto(PostDTO dto) {
+        Post post = PostMapper.toEntity(dto);
         return postRepository.save(post);
     }
 

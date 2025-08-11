@@ -8,7 +8,12 @@
   <h2>Posts Listesi</h2>
 
   <ul>
-    <li th:each="post : ${posts}" th:text="${post.title + ' - ' + post.author}"></li>
+    <li th:each="post : ${posts}">
+      <h3 th:text="${post.title}">Başlık</h3>
+      <p><strong>Yazar:</strong> <span th:text="${post.author}">Yazar</span></p>
+     
+    
+    </li>
   </ul>
 </body>
 </html>
